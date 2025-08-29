@@ -1,0 +1,34 @@
+{% extends 'posts/base.html' %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block content %}
+    <article class="bg-white p-4 p-md-5 rounded">
+        <header class="mb-4">
+            <h1 class="fw-bold">{{ object.title }}</h1>
+            <div class="post-meta mt-3">
+                <span class="me-3"><i class="bi bi-person"></i> By {{ object.author.username }}</span>
+                <span><i class="bi bi-calendar-event"></i> Published on {{ object.created_at|date:"F j, Y" }}</span>
+            </div>
+        </header>
+        
+        {% if object.image %}
+            <img src="{{ object.image.url }}" class="img-fluid rounded mb-4" alt="{{ object.title }}">
+        {% endif %}
+
+        <div class="main-content fs-5">
+            {{ object.content|linebreaks }}
+        </div>
+    </article>
+    
+    <div class="mt-4 p-3 bg-light rounded d-flex justify-content-between align-items-center">
+        <a href="{% url 'post-list' %}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back to All Posts</a>
+        
+        {% if user == object.author or user.is_staff %}
+            <div>
+                <a href="{% url 'post-edit' object.pk %}" class="btn btn-info"><i class="bi bi-pencil-square"></i> Edit</a>
+                <a href="{% url 'post-delete' object.pk %}" class="btn btn-danger"><i class="bi bi-trash"></i> Delete</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

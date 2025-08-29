@@ -1,0 +1,27 @@
+# Python / Django specific files inside the Django project folder
+Django/__pycache__/
+Django/**/*.pyc
+Django/*.log
+Django/*.pot
+Django/*.sqlite3
+Django/db.sqlite3
+
+# Virtual Environment inside the Django project folder
+Django/venv/
+Django/env/
+Django/.env
+
+# User-uploaded files
+Django/media/
+
+# Static files (if you run collectstatic)
+Django/staticfiles/
+
+# IDE / Editor specific files
+Django/.idea/
+Django/.vscode/
+Django/*.swp
+
+# OS-specific files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,18 @@
+{% extends 'posts/base.html' %}
+{% block content %}
+    <div class="card shadow-sm text-center">
+        <div class="card-body p-5">
+            <form method="POST">
+                {% csrf_token %}
+                <h2 class="mb-4">Delete Post</h2>
+                <p class="lead">Are you sure you want to delete the post titled "{{ object.title }}"?</p>
+                <p class="text-danger">This action cannot be undone.</p>
+                
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+                    <button class="btn btn-danger px-4" type="submit">Yes, Delete</button>
+                    <a class="btn btn-secondary px-4" href="{% url 'post-list' %}">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

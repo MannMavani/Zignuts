@@ -1,0 +1,22 @@
+{% extends 'posts/base.html' %}
+{% load crispy_forms_tags %} {% block content %}
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title border-bottom pb-3 mb-4">
+                {% if object %}
+                    Edit Post
+                {% else %}
+                    Create a New Post
+                {% endif %}
+            </h2>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                {{ form|crispy }} <div class="mt-4">
+                    <button class="btn btn-custom px-4" type="submit">Save Post</button>
+                    <a class="btn btn-secondary px-4" href="{{ object.get_absolute_url|default:'/' }}">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "posts/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h2 class="card-title border-bottom pb-3 mb-4">Log In</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="mt-4">
+                <button class="btn btn-custom px-4" type="submit">Login</button>
+            </div>
+        </form>
+        <div class="border-top pt-3 mt-3">
+            <small class="text-muted">
+                Need An Account? <a class="ml-2" href="{% url 'signup' %}">Sign Up Now</a>
+            </small>
+        </div>
+    </div>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success mt-3">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% endblock content %}
